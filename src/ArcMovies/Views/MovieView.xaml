@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ArcMovies.Views.MovieView"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:viewmodels="clr-namespace:ArcMovies.ViewModels"
+             NavigationPage.HasNavigationBar="False"
+             Title="{Binding Title}"
+             Icon="{Binding Icon}">
+
+    <d:ContentPage.BindingContext>
+        <viewmodels:MovieViewModel/>
+    </d:ContentPage.BindingContext>
+
+    <Grid RowSpacing="0"
+          ColumnSpacing="0"
+          Margin="0"
+          Padding="0">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0"
+              RowSpacing="0"
+              ColumnSpacing="2"
+              Margin="0"
+              Padding="10,0"
+              BackgroundColor="{StaticResource PrimaryColor}">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.Column="0"
+                   Source="ic_arrow_back_ios"
+                   WidthRequest="12.5">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding GoBackCommand}"/>
+                </Image.GestureRecognizers>
+            </Image>
+
+            <Label Grid.Column="1"
+                   Margin="0"
+                   VerticalOptions="CenterAndExpand"
+                   Text="{Binding Title}"
+                   TextColor="#ffffff"/>
+
+        </Grid>
+
+        <ScrollView Grid.Row="1">
+            <Grid Margin="5"
+                  Padding="0"
+                  RowSpacing="5"
+                  ColumnSpacing="0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Image Grid.Row="0"
+                       Margin="0"
+                       Source="{Binding Poster}"
+                       HeightRequest="350"
+                       HorizontalOptions="CenterAndExpand"
+                       Aspect="AspectFill"/>
+
+                <StackLayout Grid.Row="1"
+                             Margin="0"
+                             Padding="5, 10"
+                             Spacing="5">
+
+                    <Label Text="{Binding Title}"
+                           TextColor="{StaticResource PrimaryLightColor}"
+                           HorizontalTextAlignment="Center"/>
+
+                    <Label HorizontalTextAlignment="Center"
+                           TextColor="{StaticResource PrimaryLightColor}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Release date: "
+                                      FontAttributes="Bold"/>
+                                <Span Text="{Binding ReleaseDateLabel}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <Label HorizontalTextAlignment="Center"
+                           Text="{Binding Genres}"
+                           TextColor="{StaticResource PrimaryLightColor}"/>
+
+                    <Label HorizontalTextAlignment="Center"
+                           Text="{Binding Overview}"
+                           TextColor="{StaticResource PrimaryLightColor}"/>
+
+                </StackLayout>
+
+            </Grid>
+        </ScrollView>
+        
+    </Grid>
+</ContentPage>

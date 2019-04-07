@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          x:Class="ArcMovies.Views.DataTemplates.Movies.MovieViewCell">
+
+    <ViewCell.View>
+        <Grid Margin="5"
+              Padding="0"
+              RowSpacing="0"
+              ColumnSpacing="5">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0"
+                  Margin="0"
+                  Padding="0"
+                  RowSpacing="5"
+                  IsVisible="{Binding HasFirstItem}">
+
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding DetailsCommand}"
+                                          CommandParameter="{Binding FirstItem}"/>
+                </Grid.GestureRecognizers>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Frame Grid.Row="0"
+                       HasShadow="False"
+                       IsClippedToBounds="True"
+                       Margin="0"
+                       Padding="0"
+                       CornerRadius="15">
+
+                    <Image Margin="0"
+                           Source="{Binding FirstItemPoster}"
+                           HeightRequest="250"
+                           Aspect="AspectFill"/>
+
+                </Frame>
+
+                <StackLayout Grid.Row="1"
+                             Margin="0"
+                             Padding="5, 10"
+                             Spacing="5">
+
+                    <Label Text="{Binding FirstItem.Title}"
+                           TextColor="{StaticResource PrimaryLightColor}"
+                           HorizontalTextAlignment="Center"/>
+
+                    <Label HorizontalTextAlignment="Center"
+                           TextColor="{StaticResource PrimaryLightColor}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Release date: "
+                                      FontAttributes="Bold"/>
+                                <Span Text="{Binding FirstItem.ReleaseDateLabel}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <Label HorizontalTextAlignment="Center"
+                           Text="{Binding FirstItem.Genres}"
+                           TextColor="{StaticResource PrimaryLightColor}"/>
+
+                </StackLayout>
+
+            </Grid>
+
+            <Grid Grid.Column="1"
+                  Margin="0"
+                  Padding="0"
+                  RowSpacing="5"
+                  IsVisible="{Binding HasSecondItem}">
+
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding DetailsCommand}"
+                                          CommandParameter="{Binding SecondItem}"/>
+                </Grid.GestureRecognizers>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Frame Grid.Row="0"
+                       HasShadow="False"
+                       IsClippedToBounds="True"
+                       Margin="0"
+                       Padding="0"
+                       CornerRadius="15"
+                       IsVisible="{Binding HasFirstItem}">
+
+                    <Image Margin="0"
+                           Source="{Binding SecondItemPoster}"
+                           HeightRequest="250"
+                           Aspect="AspectFill"/>
+
+                </Frame>
+
+                <StackLayout Grid.Row="1"
+                             Margin="0"
+                             Padding="5, 10"
+                             Spacing="5">
+
+                    <Label Text="{Binding SecondItem.Title}"
+                           TextColor="{StaticResource PrimaryLightColor}"
+                           HorizontalTextAlignment="Center"/>
+
+                    <Label HorizontalTextAlignment="Center"
+                           TextColor="{StaticResource PrimaryLightColor}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Release date: "
+                                      FontAttributes="Bold"/>
+                                <Span Text="{Binding SecondItem.ReleaseDateLabel}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <Label HorizontalTextAlignment="Center"
+                           Text="{Binding SecondItem.Genres}"
+                           TextColor="{StaticResource PrimaryLightColor}"/>
+
+                </StackLayout>
+
+            </Grid>
+        </Grid>
+    </ViewCell.View>
+</ViewCell>
